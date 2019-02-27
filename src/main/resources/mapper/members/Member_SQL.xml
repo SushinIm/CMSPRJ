@@ -3,11 +3,22 @@
  
 <mapper namespace="member">
      
-     <select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+     <select id="selectMemberList" resultType="hashmap">
      	SELECT	
      		*
      	FROM
      		MEMBERS
+     </select>
+     
+     <select id="selectUserInfo" resultType="com.cmsprj.vos.MemberVo">
+     	SELECT 
+			* 
+     	FROM
+     		MEMBERS
+     	WHERE
+     		USER_ID = #{user_id}
+     	AND
+     		USER_PW = #{password}
      </select>
      
 </mapper>

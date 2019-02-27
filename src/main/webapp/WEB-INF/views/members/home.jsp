@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>회원 설정 페이지</title>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<table style="border:1px solid #ccc">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>
-        <col width="15%"/>
         <col width="20%"/>
     </colgroup>
     <thead>
@@ -21,7 +21,6 @@
             <th scope="col">글번호</th>
             <th scope="col">제목</th>
             <th scope="col">조회수</th>
-            <th scope="col">작성일</th>
         </tr>
     </thead>
     <tbody>
@@ -31,7 +30,6 @@
                     <tr>
                         <td>${row.USER_NO }</td>
                         <td>${row.USER_ID }</td>
-                        <td>${row.PASSWORD }</td>
                         <td>${row.USER_NM }</td>
                     </tr>
                 </c:forEach>

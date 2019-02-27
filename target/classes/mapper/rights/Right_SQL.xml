@@ -10,4 +10,19 @@
      		RIGHTS
      </select>
      
+     <insert id="insertMenuRight" parameterType="hashmap">
+     	INSERT INTO GRIGHTS
+     		VALUES(	GRIGHTNO.NEXTVAL,
+     				#{RIGHT_NO},
+     				#{MENU_NO}
+     				)
+     	
+     </insert>
+     
+     <insert id="updateMemberRight" parameterType="hashmap">
+     	UPDATE MEMBERS SET
+     		RIGHT_NO = #{RIGHT_NO}
+     		WHERE
+     			USER_NO = #{USER_NO}
+     </insert>
 </mapper>

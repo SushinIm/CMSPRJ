@@ -3,16 +3,19 @@ package com.cmsprj.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.common.dao.AbstractDAO;
-
 @Repository("menuDAO")
-public class MenuDAO extends AbstractDAO{
+public class MenuDAO{
 
+	@Inject
+	SqlSession sqlSession;
+	
 	@SuppressWarnings("unchecked")
     public List<Map<String, Object>> selectMenuList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("menu.selectMenuList", map);
+        return sqlSession.selectList("menu.selectMenuList", map);
     }
-
 }

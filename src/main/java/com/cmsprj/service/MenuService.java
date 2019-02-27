@@ -3,8 +3,9 @@ package com.cmsprj.service;
 import java.util.List;
 import java.util.Map;
 
-public interface MenuService {
+import javax.servlet.http.HttpSession;
 
-	List<Map<String, Object>> selectMenuList(Map<String, Object> map) throws Exception;
+public interface MenuService {
+	List<Map<String, Object>> selectMenuList(HttpSession session) throws Exception;
 
 }

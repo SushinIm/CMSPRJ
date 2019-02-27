@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +34,10 @@ public class MenuController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/main.do")
-	public ModelAndView openMainPage(Map<String,Object> commandMap) throws Exception{
+	public ModelAndView openMainPage(HttpSession session) throws Exception{
         ModelAndView mv = new ModelAndView("/menues/home");
 
-        List<Map<String,Object>> list = menuService.selectMenuList(commandMap);
+        List<Map<String,Object>> list = menuService.selectMenuList(session);
         mv.addObject("list", list);
         
         return mv;

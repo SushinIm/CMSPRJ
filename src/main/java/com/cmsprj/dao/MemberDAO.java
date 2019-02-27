@@ -3,16 +3,24 @@ package com.cmsprj.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
+import javax.inject.Inject;
 
-import com.common.dao.AbstractDAO;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+import com.cmsprj.vos.MemberVo;
 
 @Repository("memberDAO")
-public class MemberDAO extends AbstractDAO{
+public class MemberDAO{
 
-	@SuppressWarnings("unchecked")
+	@Inject
+	SqlSession sqlSession;
+	
     public List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("member.selectMemberList", map);
+        return sqlSession.selectList("member.selectMemberList", map);
     }
+
+	public MemberVo selectUserInfo(MemberVo vo) {
+		return sqlSession.selectOne("member.selectUserInfo",vo);
+	}
 
 }

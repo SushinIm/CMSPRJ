@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>회원 설정 페이지</title>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<table style="border:1px solid #ccc">
@@ -20,8 +21,6 @@
         <tr>
             <th scope="col">글번호</th>
             <th scope="col">제목</th>
-            <th scope="col">조회수</th>
-            <th scope="col">작성일</th>
         </tr>
     </thead>
     <tbody>
