@@ -37,10 +37,10 @@ public class CommonController {
 	 */
 	@RequestMapping(value = "/main.do")
 	public String autoMovePage(@ModelAttribute MemberVo vo, HttpSession session) throws Exception{
-        if(session.getAttribute("loginYN") == null) {
-            session.setAttribute("loginYN", "N");
-        }else {
+        if("Y" == session.getAttribute("loginYN")) {
             return "redirect:/mainP.do";
+        }else {
+            session.setAttribute("loginYN", "N");
         }
         return "/home";
     }
@@ -48,7 +48,7 @@ public class CommonController {
 	@RequestMapping(value = "/mainP.do")
 	public ModelAndView openMainPage(@ModelAttribute MemberVo vo, HttpSession session) throws Exception{
         ModelAndView mv = new ModelAndView("/home");
-        List<Map<String, Object>> map = menuService.selectMenuList(session);
+        List<List<Map<String, Object>>> map = menuService.selectMenuList(session);
         mv.addObject("list", map);
         return mv;
     }
@@ -57,7 +57,7 @@ public class CommonController {
 	public ModelAndView afterLogin(@ModelAttribute MemberVo vo, HttpSession session) throws Exception{
         ModelAndView mv = new ModelAndView("/home");
         boolean result = commonService.login(vo, session);
-        List<Map<String, Object>> map = new ArrayList<Map<String, Object>>();
+        List<List<Map<String, Object>>> map = new ArrayList<>();
         if(result) {
             session.setAttribute("loginYN", "Y");
             map = menuService.selectMenuList(session);
@@ -71,6 +71,12 @@ public class CommonController {
 
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session) throws Exception{
+        session.invalidate();
+        return "redirect:/main.do";
+    }
+
+	@RequestMapping(value = "/regist.do")
+	public String regist(HttpSession session) throws Exception{
         session.invalidate();
         return "redirect:/main.do";
     }

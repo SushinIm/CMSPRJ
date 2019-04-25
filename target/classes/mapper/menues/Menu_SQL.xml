@@ -18,4 +18,45 @@
 		    CONNECT BY PARENTS = PRIOR MENU_NO
      </select>
      
+     <select id="selectUpperMenuLv" parameterType="hashmap" resultType="java.lang.String">
+		SELECT MENU_LV
+			FROM MENUES
+			WHERE MENU_NO = #{PARENTS}
+     </select>
+     
+     <select id="insertNewMenu" parameterType="hashmap">
+		INSERT INTO MENUES
+     		VALUES(	MENUNO.NEXTVAL,
+     				#{MENU_NM},
+     				#{MENU_LV},
+     				#{PARENTS}
+     				)
+     </select>
+     
+     <select id="insertNewMenu2" parameterType="hashmap">
+		INSERT INTO MENUES
+     		VALUES(	MENUNO.NEXTVAL,
+     				#{MENU_NM},
+     				#{MENU_LV},
+     				NULL
+     				)
+     </select>
+     
+     <select id="setMenuDefault" parameterType="hashmap">
+		INSERT INTO GRIGHTS
+     		VALUES(	GRIGHTNO.NEXTVAL,
+     				0,
+     				(SELECT MENU_NO 
+     					FROM MENUES 
+     					WHERE MENU_NM = #{MENU_NM})
+     				)
+     </select>
+     
+     <select id="deleteMenues" parameterType="hashmap">
+		DELETE 
+			FROM MENUES
+				WHERE MENU_NO = #{MENU_NO}
+					OR PARENTS = #{MENU_NO}
+     </select>
+     
 </mapper>

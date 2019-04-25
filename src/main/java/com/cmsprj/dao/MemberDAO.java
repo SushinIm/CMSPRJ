@@ -23,4 +23,12 @@ public class MemberDAO{
 		return sqlSession.selectOne("member.selectUserInfo",vo);
 	}
 
+	public int deleteUsers(Map<String, Object> paramMap) {
+		return sqlSession.delete("member.deleteUsers", paramMap);
+	}
+
+	public int insertNewMember(MemberVo mvo) {
+		return sqlSession.insert("member.insertNewMember", mvo);
+	}
+
 }

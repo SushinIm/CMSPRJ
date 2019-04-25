@@ -21,4 +21,18 @@
      		USER_PW = #{password}
      </select>
      
+     <select id="insertNewMember" parameterType="com.cmsprj.vos.MemberVo">
+		INSERT INTO MEMBERS VALUES
+			(USERNO.NEXTVAL
+			, #{user_id}
+			, #{password}
+			, #{user_nm}
+			, NULL) 
+     </select>
+     
+     <select id="deleteMenues" parameterType="hashmap">
+		DELETE 
+			FROM MEMBERS
+				WHERE USER_NO = #{USER_NO}
+     </select>
 </mapper>

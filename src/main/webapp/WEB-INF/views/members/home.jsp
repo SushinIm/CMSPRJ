@@ -10,17 +10,20 @@
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+	<form id="frm" action="/menu/delUser.do">
+		<input type="hidden" id="users" name="users" value=" " />
+	</form>
 	<table style="border:1px solid #ccc">
     <colgroup>
         <col width="10%"/>
-        <col width="*"/>
+        <col width="20%"/>
         <col width="20%"/>
     </colgroup>
     <thead>
         <tr>
-            <th scope="col">글번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">조회수</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">회원ID</th>
+            <th scope="col">회원이름</th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +31,7 @@
             <c:when test="${fn:length(list) > 0}">
                 <c:forEach items="${list }" var="row">
                     <tr>
-                        <td>${row.USER_NO }</td>
+                        <td><input type="checkbox" value="${row.USER_NO }" name="dus"/></td>
                         <td>${row.USER_ID }</td>
                         <td>${row.USER_NM }</td>
                     </tr>
@@ -40,8 +43,9 @@
                 </tr>
             </c:otherwise>
         </c:choose>
-         
     </tbody>
 	</table>
+	<input type="button" onclick="delUser()" value="회원삭제" />&nbsp;
+	<input type="button" onclick="javascript:location.href='/main.do'" value="메인화면" />
 </body>
 </html>

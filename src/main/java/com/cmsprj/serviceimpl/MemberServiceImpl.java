@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.cmsprj.controller.CommonController;
 import com.cmsprj.dao.MemberDAO;
 import com.cmsprj.service.MemberService;
+import com.cmsprj.vos.MemberVo;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -25,5 +26,15 @@ public class MemberServiceImpl implements MemberService{
     public List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception {
         return memberDAO.selectMemberList(map);
     }
+
+	@Override
+	public int deleteUsers(Map<String, Object> paramMap) {
+        return memberDAO.deleteUsers(paramMap);
+	}
+
+	@Override
+	public int insertNewMember(MemberVo mvo) {
+        return memberDAO.insertNewMember(mvo);
+	}
  
 }

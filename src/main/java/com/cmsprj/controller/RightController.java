@@ -51,7 +51,7 @@ public class RightController {
 		ModelAndView mv = new ModelAndView("/rights/grantMenu");
 		String rightNO = request.getParameter("right_no");
 		
-        List<Map<String,Object>> list = menuService.selectMenuList(session);
+		List<List<Map<String, Object>>> list = menuService.selectMenuList(session);
         
         mv.addObject("list", list);
         mv.addObject("rightNO", rightNO);
